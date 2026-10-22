@@ -1,5 +1,5 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
-import './styles.css';
-ReactDOM.createRoot(document.getElementById('root')!).render(<React.StrictMode><App /></React.StrictMode>);
+import React from 'react';import ReactDOM from 'react-dom/client';import App from './App';import AuthGate from './AuthGate';import type {AuthResponse} from './api';import './styles.css';
+function Root(){const [authenticated,setAuthenticated]=React.useState(()=>Boolean(localStorage.getItem('spendwise_token')));const [user,setUser]=React.useState<{name:string;email:string}|null>(()=>{try{return JSON.parse(localStorage.getItem('spendwise_user')||'null')}catch{return null}});
+function signedIn(a:AuthResponse){setUser({name:a.name,email:a.email});setAuthenticated(true)}function signOut(){localStorage.removeItem('spendwise_token');localStorage.removeItem('spendwise_user');setUser(null);setAuthenticated(false)}
+return authenticated?<App user={user} onLogout={signOut}/>:<AuthGate onAuthenticated={signedIn}/>;}
+ReactDOM.createRoot(document.getElementById('root')!).render(<React.StrictMode><Root/></React.StrictMode>);

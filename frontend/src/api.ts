@@ -1,11 +1,6 @@
-import axios from 'axios';
-import type { Transaction, TransactionInput } from './types';
-const api = axios.create({
-  baseURL: (import.meta.env.VITE_API_URL || 'https://spendwise-api-yox5.onrender.com').replace(/\/$/, ''),
-  headers: { 'Content-Type': 'application/json' },
-});
-export const transactionsApi = {
-  list: (month: string) => api.get<Transaction[]>('/api/transactions', { params: { month } }).then(r => r.data),
-  create: (data: TransactionInput) => api.post<Transaction>('/api/transactions', data).then(r => r.data),
-  remove: (id: number) => api.delete(`/api/transactions/${id}`),
-};
+import axios from 'axios';import type {Transaction,TransactionInput} from './types';
+const api=axios.create({baseURL:(import.meta.env.VITE_API_URL||'https://spendwise-api-yox5.onrender.com').replace(/\/$/,''),headers:{'Content-Type':'application/json'}});
+api.interceptors.request.use(config=>{const token=localStorage.getItem('spendwise_token');if(token)config.headers.Authorization=`Bearer ${token}`;return config;});
+export interface AuthResponse{token:string;name:string;email:string;expiresAt:string}
+export const authApi={register:(data:{name:string;email:string;password:string})=>api.post<AuthResponse>('/api/auth/register',data).then(r=>r.data),login:(data:{email:string;password:string})=>api.post<AuthResponse>('/api/auth/login',data).then(r=>r.data)};
+export const transactionsApi={list:(month:string)=>api.get<Transaction[]>('/api/transactions',{params:{month}}).then(r=>r.data),create:(data:TransactionInput)=>api.post<Transaction>('/api/transactions',data).then(r=>r.data),remove:(id:number)=>api.delete(`/api/transactions/${id}`)};
