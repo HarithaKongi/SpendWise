@@ -98,3 +98,11 @@ html[data-theme="light"] body,html[data-theme="light"] .app-shell{background:var
 .chart-loading{display:flex;align-items:center;padding:14px 0}.chart-loading .sw-skeleton{width:100%;height:190px}
 .transactions-loading{display:grid;gap:10px;padding:12px 0}.transactions-loading .sw-skeleton{height:58px;border-radius:10px}
 .feature-grid>.feature-panel.sw-skeleton{min-height:205px}
+
+/* Minimum touch target sizing */
+.theme-toggle,.sheet-close{width:44px;height:44px;min-height:44px}
+.category-chip{min-height:44px}
+.icon-btn,.grouped-row .icon-btn{min-width:44px;min-height:44px}
+.logout-btn{min-height:44px}
+.transaction-filters select,.transaction-filters>input{min-height:44px}
+.search-box{min-height:44px}
