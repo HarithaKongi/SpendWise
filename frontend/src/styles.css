@@ -28,8 +28,8 @@
   --sw-shadow-sm:0 2px 8px rgba(0,0,0,.12);
   --sw-shadow-md:0 12px 32px rgba(0,0,0,.2);
   --sw-shadow-sheet:0 -18px 60px rgba(0,0,0,.32);
-  --sw-space-1:4px;--sw-space-2:8px;--sw-space-3:12px;--sw-space-4:16px;
-  --sw-space-5:24px;--sw-space-6:32px;--sw-space-7:40px;--sw-space-8:48px;
+  --sw-space-1:8px;--sw-space-2:16px;--sw-space-3:24px;--sw-space-4:32px;
+  --sw-space-5:40px;--sw-space-6:48px;--sw-space-7:56px;--sw-space-8:64px;
   --sw-font-xs:11px;--sw-font-sm:12px;--sw-font-md:14px;--sw-font-lg:16px;
   --sw-font-xl:20px;--sw-font-2xl:28px;--sw-font-3xl:36px;
   --sw-motion:200ms cubic-bezier(.2,.7,.2,1);
