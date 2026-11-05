@@ -106,3 +106,5 @@ html[data-theme="light"] body,html[data-theme="light"] .app-shell{background:var
 .logout-btn{min-height:44px}
 .transaction-filters select,.transaction-filters>input{min-height:44px}
 .search-box{min-height:44px}
+
+html[data-theme="light"] .budget-track{background:#e4ebf2}
