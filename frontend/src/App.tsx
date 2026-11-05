@@ -1,5 +1,5 @@
 import { lazy, Suspense, useCallback, useEffect, useMemo, useState, type FormEvent } from 'react';
-import { ArrowDownLeft, ArrowUpRight, CalendarDays, CirclePlus, CreditCard, LayoutDashboard, Search, Sparkles, Trash2, Wallet, LogOut, Sun, Moon, Receipt, PiggyBank, Settings, Utensils, Car, ShoppingBag, House, HeartPulse, GraduationCap, BriefcaseBusiness, MoreHorizontal, Pencil } from 'lucide-react';
+import { ArrowDownLeft, ArrowUpRight, CalendarDays, CirclePlus, LayoutDashboard, Search, Sparkles, Trash2, Wallet, LogOut, Sun, Moon, Receipt, PiggyBank, Settings, Utensils, Car, ShoppingBag, House, HeartPulse, GraduationCap, BriefcaseBusiness, MoreHorizontal, Pencil, type LucideIcon } from 'lucide-react';
 import { transactionsApi } from './api';
 import type { Transaction, TransactionInput, TransactionType } from './types';
 const FeaturesPanel = lazy(() => import('./FeaturesPanel'));
@@ -9,7 +9,7 @@ const localDate = () => { const d = new Date(); return new Date(d.getTime()-d.ge
 const today = localDate();
 const money = (n:number) => new Intl.NumberFormat('en-IN',{style:'currency',currency:'INR',maximumFractionDigits:0}).format(n);
 const categories = ['Food','Transport','Shopping','Bills','Health','Education','Salary','Freelance','Other'];
-const categoryIcon:Record<string,typeof Wallet> = {Food:Utensils,Transport:Car,Shopping:ShoppingBag,Bills:House,Health:HeartPulse,Education:GraduationCap,Salary:BriefcaseBusiness,Freelance:BriefcaseBusiness,Other:MoreHorizontal};
+const categoryIcon:Record<string,LucideIcon> = {Food:Utensils,Transport:Car,Shopping:ShoppingBag,Bills:House,Health:HeartPulse,Education:GraduationCap,Salary:BriefcaseBusiness,Freelance:BriefcaseBusiness,Other:MoreHorizontal};
 const blank:TransactionInput = {title:'',amount:0,type:'EXPENSE',category:'Food',date:today,paymentMethod:'UPI',notes:''};
 type AppProps={user:{name:string;email:string}|null;onLogout:()=>void};
 const budgetKey=(email:string,month:string)=>'spendwise_budget_'+email.toLowerCase()+'_'+month;
