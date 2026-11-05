@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
-import { Download, FileSpreadsheet, FileText, PiggyBank, UserRound, ChartNoAxesColumn } from 'lucide-react';
+import { Download, FileSpreadsheet, FileText, PiggyBank, UserRound, ChartNoAxesColumn, Sparkles } from 'lucide-react';
 import type { Transaction } from './types';\nimport { transactionsApi } from './api';
 
 type Props={items:Transaction[];month:string;user:{name:string;email:string}|null;onNotice:(message:string)=>void};
