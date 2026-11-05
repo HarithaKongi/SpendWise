@@ -1,7 +1,8 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import { Download, FileSpreadsheet, FileText, PiggyBank, UserRound, ChartNoAxesColumn, Sparkles } from 'lucide-react';
-import type { Transaction } from './types';\nimport { transactionsApi } from './api';
+import type { Transaction } from './types';
+import { transactionsApi } from './api';
 
 type Props={items:Transaction[];month:string;user:{name:string;email:string}|null;onNotice:(message:string)=>void};
 const money=(n:number)=>new Intl.NumberFormat('en-IN',{style:'currency',currency:'INR',maximumFractionDigits:2}).format(n);
@@ -9,7 +10,11 @@ const keyFor=(email:string,month:string)=>'spendwise_budget_'+email.toLowerCase(
 export default function FeaturesPanel({items,month,user,onNotice}:Props){
  const [budget,setBudget]=useState('');
  const [savedBudget,setSavedBudget]=useState(0);
- const [profileName,setProfileName]=useState(user?.name||'');\n const [previousItems,setPreviousItems]=useState<Transaction[]>([]);\n const [categoryBudgets,setCategoryBudgets]=useState<Record<string,number>>({});\n const [budgetCategory,setBudgetCategory]=useState('Food');\n const [budgetAmount,setBudgetAmount]=useState('');
+ const [profileName,setProfileName]=useState(user?.name||'');
+ const [previousItems,setPreviousItems]=useState<Transaction[]>([]);
+ const [categoryBudgets,setCategoryBudgets]=useState<Record<string,number>>({});
+ const [budgetCategory,setBudgetCategory]=useState('Food');
+ const [budgetAmount,setBudgetAmount]=useState('');
  useEffect(()=>{const v=Number(localStorage.getItem(keyFor(user?.email||'guest',month))||0);setSavedBudget(v);setBudget(v?String(v):'');const key='spendwise_category_budgets_'+(user?.email||'guest').toLowerCase()+'_'+month;try{setCategoryBudgets(JSON.parse(localStorage.getItem(key)||'{}'))}catch{setCategoryBudgets({})}},[month,user?.email]);
  useEffect(()=>{const [year,monthNumber]=month.split('-').map(Number);const previous=new Date(year,monthNumber-2,1);const previousMonth=previous.getFullYear()+'-'+String(previous.getMonth()+1).padStart(2,'0');transactionsApi.list(previousMonth).then(setPreviousItems).catch(()=>setPreviousItems([]))},[month]);
  const expenses=items.filter(t=>t.type==='EXPENSE').reduce((s,t)=>s+t.amount,0);
