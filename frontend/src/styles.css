@@ -111,3 +111,5 @@ html[data-theme="light"] .budget-track{background:#e4ebf2}
 
 .main>.alert:not(.error){position:fixed;top:84px;right:24px;z-index:40;min-width:260px;max-width:min(460px,calc(100vw - 32px));box-shadow:var(--sw-shadow-md)}
 @media(max-width:760px){.main>.alert:not(.error){top:68px;right:14px;left:14px;max-width:none;min-width:0}}
+
+.month-picker{min-height:44px}.type-switch button{min-height:44px}
